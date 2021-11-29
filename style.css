@@ -1,0 +1,364 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f3efef;
+  margin: 0;
+}
+
+.bolder {
+  font-weight: 800;
+  font-size: 18px;
+}
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+}
+a:link,
+a:visited,
+a:active {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  color: blue;
+}
+:root {
+  --add: #023047;
+  --todo1: #50bdd8;
+  --todo2: #8ecae6;
+  --done1: #eca048;
+  --done2: #ffb703;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-size: 40px;
+}
+
+.container {
+  margin: 30px auto;
+  width: 800px;
+}
+
+.form {
+  padding-bottom: 20px;
+  margin: 20px 0;
+}
+
+.add-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Acontainer {
+  width: 90%;
+}
+
+.todo-span {
+  width: 90%;
+  font-size: 15px;
+  word-break: break-all;
+}
+
+.Bcontainer {
+  width: 90%;
+}
+.done-span {
+  font-size: 15px;
+  margin: 5px 3px 2px;
+  width: 80%;
+  word-break: break-all;
+}
+
+input {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  display: block;
+  padding: 10px;
+  margin-right: 5px;
+  width: 85%;
+  color: var(--add);
+  font-size: 15px;
+}
+
+button {
+  border: 0;
+  display: block;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+.add-btn {
+  background-color: var(--add);
+  color: #fff;
+  width: 15%;
+}
+
+input:focus,
+button:focus {
+  outline: 0;
+}
+
+li {
+  list-style-type: none;
+}
+.todo-list {
+  padding: 0;
+  margin: 0;
+}
+
+.todo-line {
+  background-color: #d1e5ee;
+  color: var(--add);
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.done-line {
+  background-color: #f1dba1;
+  color: var(--add);
+  padding: 8px;
+  border-radius: 10px;
+  width: 100%;
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title-span {
+  margin-left: 5px;
+  border-radius: 5px;
+  padding: 3px 5px;
+  color: #fff;
+  background-color: #eb9431;
+  font-size: 15px;
+}
+
+.delete-btn {
+  margin-top: 1px;
+  display: inline-flex;
+  background-color: var(--done1);
+}
+
+.modify-btn {
+  display: inline-flex;
+  background-color: #219ebc;
+  margin-right: 4px;
+}
+
+.complete-btn {
+  background-color: var(--done1);
+}
+
+.done-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.done-list {
+  margin: 0 0 4px 0;
+  padding: 0;
+}
+
+.add-day-done {
+  background-color: #375e70;
+  margin-right: 5px;
+  border-radius: 5px;
+  padding: 2px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.todo-count {
+  background-color: var(--todo1);
+  font-size: 20px;
+  padding: 3px 9px;
+  border-radius: 30px;
+  color: #fff;
+}
+.complete-count {
+  background-color: var(--done1);
+  font-size: 20px;
+  padding: 3px 9px;
+  border-radius: 30px;
+  color: #fff;
+}
+
+.modify-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modify-div {
+  position: relative;
+}
+.modify-input {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+
+  margin-top: 7px;
+  margin-bottom: 0px;
+  height: 30px;
+  color: var(--add);
+}
+.modified-btn {
+  color: #fff;
+  height: 30px;
+  margin-top: 7px;
+  background-color: var(--todo1);
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 30px;
+  }
+  .container {
+    width: 450px;
+  }
+  button {
+    font-size: 15px;
+  }
+  .modify-input {
+    width: 500px;
+  }
+}
+
+.order-btn {
+  border-radius: 15px;
+  margin-top: 7px;
+  position: absolute;
+  left: 220px;
+  padding: 9px;
+  background-color: var(--done1);
+}
+
+.orange {
+  left: 220px;
+
+  background-color: var(--done1);
+}
+
+.blue {
+  left: 200px;
+
+  background-color: var(--todo1);
+}
+
+.achievement-btn {
+  border-radius: 15px;
+  margin-top: 7px;
+  position: absolute;
+  left: 385px;
+  padding: 8px;
+  background-color: var(--add);
+}
+
+.achievements {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 1%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  background: #375e70;
+  color: rgb(255, 255, 255);
+  font-size: 22px;
+  overflow: hidden;
+  width: 450px;
+  padding: 20px;
+  visibility: hidden;
+  border-radius: 15px;
+}
+
+.achievements.show {
+  visibility: visible;
+}
+
+.day-div {
+  background-color: var(--add);
+  color: var(--done1);
+  border: 5px solid var(--done1);
+  font-size: 25px;
+  border-radius: 15px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0px 7px 0px;
+}
+.achievement-day {
+  position: absolute;
+}
+.counter {
+  font-size: 16px;
+  position: relative;
+  left: 175px;
+  padding: 4px 9px 4px 9px;
+  margin-right: 10px;
+  color: #fff;
+  border-radius: 30px;
+  background-color: var(--done1);
+  text-shadow: 2px 2px 2px #023047;
+}
+.achievement-Card {
+  background-color: #ebd7a6;
+  color: var(--add);
+  border-radius: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  margin: 15px 0px;
+  padding: 0;
+}
+
+.achievement-div {
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  background-color: var(--done1);
+  padding: 8px;
+  margin-top: 15px;
+  float: right;
+}
+
+.achievements h2 {
+  margin-left: 24px;
+  font-size: 23px;
+  display: inline-block;
+}
+
+.achievement-span {
+  font-size: 17px;
+  margin: 7px 7px 15px 7px;
+  padding: 0;
+  font-weight: bold;
+  word-break: break-all;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "HeadingMark",
+  "description": "This app gives you an easy overview of your documents. By using this app, users can keep the important content and URL of that page.",
+  "manifest_version": 2,
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "storage"]
+}

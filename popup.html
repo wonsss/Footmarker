@@ -1,0 +1,40 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css">
+    <title>Heading Mark</title>
+<body style="width: 600px">
+  <div>
+      <button id="order-btn" class="order-btn orange">Move saved list up</button>
+    <button id="achievement-btn" class="achievement-btn">View saved list by date</button>
+    </div>
+    <div id="achievements" class="achievements">
+      <h2>Saved list by date</h2>
+      <button id="close-btn" class="close-btn">Close</button>
+      <div id="achievementDiv" class="achievement-div"></div>
+    </div>
+
+    <div id="contents" class="contents">
+      <div id="Acontainer" class="Acontainer">
+          <h2 class="bolder">Scrap targets  <span class="todo-count" id="todo-count">0</span></h2>
+            <div class="todo-container">
+                <ul id="todo-list" class="todo-list">
+                    <!-- prepend 넣을곳 -->
+                </ul>
+            </div>
+      </div>
+          <div id="Bcontainer" class="Bcontainer">
+            <h2 class="bolder">Saved list   <span class="complete-count" id="complete-count">0</span></h2>
+            <div class="done-container">
+                <ul id="done-list" class="done-list">
+                       <!-- prepend 넣을곳 -->
+                </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

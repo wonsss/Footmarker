@@ -1,0 +1,7 @@
+{
+  "name": "HeadingMark",
+  "type": "module",
+  "description": "This app gives you an easy overview of your documents. By using this app, users can keep the important content and URL of that page. You can efficiently record and organize information obtained while surfing the web. 이 앱은 문서의 개요를 쉽게 알려줍니다. 이 앱을 사용함으로써 해당 페이지의 중요한 내용과 URL을 사용자가 보관할 수 있습니다. 수 많은 웹서핑 중 얻게 된 정보를 효율적으로 기록하고 정리할 수 있습니다.",
+  "main": "app.js",
+  "author": "Marco"
+}
