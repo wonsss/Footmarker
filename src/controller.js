@@ -51,7 +51,6 @@ export default class TodoController {
               let simpleUrl = '';
               function isHashThere() {
                 const indexStart = data[0].indexOf('href="#') + 6;
-                console.log(indexStart);
                 const indexEnd = data[0].indexOf('"', indexStart);
                 const hashUrl = data[0].slice(indexStart, indexEnd);
                 if (url[0].includes('#')) {
@@ -73,9 +72,12 @@ export default class TodoController {
                   code: 'document.title',
                 },
                 title => {
-                  const textIndexStart = data[0].indexOf('>') + 1;
-                  const textIndexEnd = data[0].indexOf('</a>', textIndexStart);
-                  const newText = data[0].slice(textIndexStart, textIndexEnd);
+                  const newText = data[0]
+                    .replace(/<(\/a|a)([^>]*)>/gi, '')
+                    .replace(/<(\/span|span)([^>]*)>/gi, '')
+                    .replace(/<(\/code|code)([^>]*)>/gi, '')
+                    .replace(/#/gi, '');
+
                   const newTodoObj = {
                     text: newText,
                     url: simpleUrl,
