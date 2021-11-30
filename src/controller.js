@@ -135,6 +135,12 @@ export default class TodoController {
     const value = $input.value.toLowerCase();
     this.view.clearSearchResult();
     let isThereResult = false;
+    if (value === '') {
+      const text = 'Please enter a search term.';
+      this.view.renderNoResult(text);
+      this.view.showSearchResult();
+      return;
+    }
     this.model.completeStorage.forEach(v => {
       const targetText = v.text.toLowerCase();
       const targetTitle = v.title[0].toLowerCase();
@@ -147,7 +153,8 @@ export default class TodoController {
       }
     });
     if (isThereResult === false) {
-      this.view.renderNoResult(value);
+      const text = `There were no results found for '${value}'.`;
+      this.view.renderNoResult(text);
       this.view.showSearchResult();
     }
     $input.value = '';

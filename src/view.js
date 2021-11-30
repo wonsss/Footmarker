@@ -59,8 +59,8 @@ export default class TodoView {
     this.$searchResult.innerHTML = '';
   }
 
-  renderNoResult(value) {
-    this.$searchResult.innerHTML = `<span class='noResult'>There were no results found for '${value}'.</span>`;
+  renderNoResult(text) {
+    this.$searchResult.innerHTML = `<span class='noResult'>${text}</span>`;
   }
 
   showSearchResult() {
