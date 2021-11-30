@@ -87,7 +87,6 @@ export default class TodoController {
                     text: newText,
                     url: simpleUrl,
                     title: title,
-                    // id: ,
                     id: this.model.getRandomNumber(),
                     addDay: `${month}.${date}. ${hour}:${minute}`,
                   };
@@ -137,9 +136,12 @@ export default class TodoController {
     this.view.clearSearchResult();
     let isThereResult = false;
     this.model.completeStorage.forEach(v => {
-      // console.log(v.text.includes(value));
-      const target = v.text.toLowerCase();
-      if (target.indexOf(value) !== -1) {
+      const targetText = v.text.toLowerCase();
+      const targetTitle = v.title[0].toLowerCase();
+      if (
+        targetText.indexOf(value) !== -1 ||
+        targetTitle.indexOf(value) !== -1
+      ) {
         this.createSearchResultHandler(v);
         isThereResult = true;
       }

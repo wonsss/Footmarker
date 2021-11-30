@@ -396,9 +396,7 @@ li {
   background: #585858;
   color: rgb(255, 255, 255);
   font-size: 22px;
-  overflow: hidden;
-  height: 523px;
-
+  min-height: 523px;
   width: 550px;
   padding: 20px;
   border-radius: 15px;
