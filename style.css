@@ -13,7 +13,8 @@
   --gray: #86868b;
   --midgray: #666668;
   --darkgray: #353535;
-  --red: #c5453f;
+  --red: #FF9B00;
+  --green: #41E638
 }
 
 body {
@@ -76,18 +77,24 @@ h1 {
 
 .todo-span {
   width: 90%;
-  font-size: 15px;
+  font-size: 17px;
   word-break: break-all;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .Bcontainer {
   width: 90%;
 }
 .done-span {
-  font-size: 15px;
+  font-size: 17px;
   margin: 5px 3px 2px;
   width: 80%;
   word-break: break-all;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 input {
@@ -171,6 +178,7 @@ li {
 
 .delete-btn {
   background-color: var(--red);
+  color: var(--white1);
   margin-top: 1px;
   display: inline-flex;
 }
@@ -181,6 +189,9 @@ li {
 }
 
 .complete-btn {
+    background-color: var(--green);
+    color: var(--white1)
+
 }
 
 .done-div {
@@ -257,12 +268,12 @@ li {
 
 .orange {
   left: 220px;
-  background-color: var(--blue);
+  background-color: var(--red);
 }
 
 .blue {
   left: 200px;
-  background-color: var(--blue);
+  background-color: var(--green);
 }
 
 .achievement-btn {
@@ -347,6 +358,7 @@ li {
 }
 
 .close-btn {
+    background-color: var(--red);
   padding: 8px;
   margin-top: 15px;
   float: right;
@@ -395,7 +407,7 @@ li {
   transform: translate(-50%, 0);
   background: var(--black2);
   font-size: 22px;
-  min-height: 523px;
+  min-height: 540px;
   width: 540px;
   padding: 20px;
   border-radius: 7px;
@@ -415,6 +427,7 @@ li {
 }
 
 .search-close-btn {
+    background-color: var(--red);
   height: 30px;
   position: absolute;
   left: 50%;

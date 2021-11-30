@@ -15,9 +15,7 @@ export default class TodoController {
     this.changeDivOrder();
     this.initAchievement();
     this.initSearchForm();
-    document
-      .getElementById('form')
-      .addEventListener('submit', this.searchFormHandler.bind(this));
+
     const setComplete = data => {
       this.model.setCompleteStorage(data);
       this.model.completeStorage.forEach(this.createCompleteHandler.bind(this));
@@ -123,14 +121,22 @@ export default class TodoController {
   }
 
   initSearchForm() {
-    const $closeBtn = document.getElementById('search-close-btn');
-    $closeBtn.addEventListener('click', () => {
-      this.view.hideSearchResult();
-    });
+    document
+      .getElementById('form')
+      .addEventListener('submit', this.searchFormHandler.bind(this));
+    document
+      .getElementById('search-input')
+      .addEventListener('keyup', this.searchFormHandler.bind(this));
+    document
+      .getElementById('search-close-btn')
+      .addEventListener('click', () => {
+        this.view.hideSearchResult();
+      });
   }
 
   searchFormHandler(e) {
     e.preventDefault();
+    console.log('hi');
     const $input = document.getElementById('search-input');
     const value = $input.value.toLowerCase();
     this.view.clearSearchResult();
@@ -157,7 +163,6 @@ export default class TodoController {
       this.view.renderNoResult(text);
       this.view.showSearchResult();
     }
-    $input.value = '';
   }
 
   beautifyTime(number) {
@@ -172,7 +177,7 @@ export default class TodoController {
     const $div = document.createElement('div');
     $div.className = 'todo-span';
     const $todoSpan = document.createElement('span');
-    $todoSpan.className = '';
+    $todoSpan.className = 'todo-span';
     $todoSpan.innerHTML = obj.text;
 
     const $link = document.createElement('a');
@@ -211,6 +216,7 @@ export default class TodoController {
     $title.innerText = obj.title;
 
     const $div = document.createElement('div');
+    $div.className = 'divBox';
 
     const $doneSpan = document.createElement('div');
     $doneSpan.className = 'done-span';
@@ -233,10 +239,12 @@ export default class TodoController {
     $li.appendChild($addDaySpan);
     $li.appendChild($modifyBtn);
     $li.appendChild($deleteBtn);
-    $li.appendChild($title);
     $link.appendChild($doneSpan);
     $div.appendChild($link);
+
+    $li.appendChild($title);
     $li.appendChild($div);
+
     return $li;
   }
 
