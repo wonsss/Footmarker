@@ -9,6 +9,8 @@ const dom = {
   $todoCount: document.getElementById('todo-count'),
   $completeCount: document.getElementById('complete-count'),
   $achievementDiv: document.getElementById('achievementDiv'),
+  $searchResult: document.getElementById('search-result'),
+  $searchCount: document.getElementById('search-count'),
 };
 
 window.addEventListener('DOMContentLoaded', () => {

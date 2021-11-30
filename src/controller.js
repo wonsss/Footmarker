@@ -12,7 +12,10 @@ export default class TodoController {
 
   init() {
     this.changeDivOrder();
-    this.showAchievement();
+    this.initAchievement();
+    document
+      .getElementById('form')
+      .addEventListener('submit', this.searchFormHandler.bind(this));
     const setComplete = data => {
       this.model.setCompleteStorage(data);
       this.model.completeStorage.forEach(this.createCompleteHandler.bind(this));
@@ -82,7 +85,8 @@ export default class TodoController {
                     text: newText,
                     url: simpleUrl,
                     title: title,
-                    id: Math.floor(Math.random() * 10000000000000),
+                    // id: ,
+                    id: this.model.getRandomNumber(),
                     addDay: `${month}.${date}. ${hour}:${minute}`,
                   };
                   this.model.pushDataToStorage(
@@ -117,11 +121,22 @@ export default class TodoController {
     );
   }
 
-  getInputData() {
-    const $inputTodoData = document.getElementById('add-input');
-    const { value } = $inputTodoData;
-    TodoModel.prototype.setTodoDataFromUser(value);
-    $inputTodoData.value = '';
+  searchFormHandler(e) {
+    e.preventDefault();
+    const $input = document.getElementById('search-input');
+    const value = $input.value.toLowerCase();
+    this.view.clearSearchResult();
+    this.model.completeStorage.forEach(v => {
+      // console.log(v.text.includes(value));
+      const target = v.text.toLowerCase();
+      if (target.indexOf(value) === -1) {
+        // alert(v);
+        this.view.renderNoResult(value);
+      } else {
+        this.createSearchResultHandler(v);
+      }
+    });
+    $input.value = '';
   }
 
   beautifyTime(number) {
@@ -158,7 +173,7 @@ export default class TodoController {
     return $li;
   }
 
-  createCompleteHandler(obj) {
+  createCompleteElement(obj) {
     const $li = document.createElement('li');
     $li.className = 'done-line';
     $li.id = obj.id;
@@ -201,9 +216,17 @@ export default class TodoController {
     $link.appendChild($doneSpan);
     $div.appendChild($link);
     $li.appendChild($div);
-    this.view.renderComplete($li);
-    this.view.renderCounter();
     return $li;
+  }
+
+  createCompleteHandler(obj) {
+    this.view.renderComplete(this.createCompleteElement(obj));
+    this.view.renderCounter();
+  }
+
+  createSearchResultHandler(obj) {
+    this.view.renderSearchResult(this.createCompleteElement(obj));
+    // this.view.renderSearchCount(num);
   }
 
   modifyBtnHandler(e) {
@@ -232,7 +255,7 @@ export default class TodoController {
       modifyObj.text = changedText;
       this.model.completeStorage.splice(modifyObjIndex, 1, modifyObj);
       this.model.saveTodo(TodoModel.COMPLETE_KEY, this.model.completeStorage);
-      const $modifiedLine = this.createCompleteHandler(modifyObj);
+      const $modifiedLine = this.createCompleteElement(modifyObj);
 
       $li.replaceWith($modifiedLine);
     };
@@ -313,7 +336,7 @@ export default class TodoController {
     orderBtn.addEventListener('click', orderToggle);
   }
 
-  showAchievement() {
+  initAchievement() {
     const showAchievementBtn = document.getElementById('achievement-btn');
     const closeBtn = document.getElementById('close-btn');
     const achievements = document.getElementById('achievements');
@@ -326,11 +349,7 @@ export default class TodoController {
       this.view.clearAchievement();
       this.alreadyShow = false;
     });
-    const contents = document.getElementById('contents');
-    contents.addEventListener('mouseup', () => {
-      const popup = document.getElementById('achievements');
-      popup.classList.remove('show');
-    });
+
   }
 
   createAchievementsByDateHandler() {

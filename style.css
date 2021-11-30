@@ -362,3 +362,35 @@ li {
   font-weight: bold;
   word-break: break-all;
 }
+
+.search-form {
+  margin: 15px 32px 10px 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-btn {
+  background-color: var(--add);
+  color: #fff;
+  width: 15%;
+}
+
+.search-input {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  display: block;
+  padding: 10px;
+  margin-right: 5px;
+  width: 85%;
+  color: var(--add);
+  font-size: 18px;
+}
+
+.noResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 10px;
+}

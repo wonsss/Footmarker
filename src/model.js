@@ -1,6 +1,6 @@
 export default class TodoModel {
   constructor() {
-    this.inputTodoData;
+    // this.inputTodoData;
     this.todoStorage = [];
     this.completeStorage = [];
   }
@@ -9,29 +9,49 @@ export default class TodoModel {
 
   static COMPLETE_KEY = 'MarcoCOMPLETE';
 
-  getTodoDataFromUser() {
-    return this.inputTodoData;
-  }
+  // getTodoDataFromUser() {
+  //   return this.inputTodoData;
+  // }
 
-  setTodoDataFromUser(data) {
-    this.inputTodoData = data;
-  }
+  // setTodoDataFromUser(data) {
+  //   this.inputTodoData = data;
+  // }
 
   pushDataToStorage(obj, storage) {
     storage.push(obj);
   }
 
   saveTodo(key, storage) {
-    // localStorage.setItem(key, JSON.stringify(storage));
     chrome.storage.sync.set({
       [key]: JSON.stringify(storage),
     });
   }
 
-  setTodoStorage(data) {
-    this.todoStorage = data;
-  }
+  // setTodoStorage(data) {
+  //   this.todoStorage = data;
+  // }
   setCompleteStorage(data) {
     this.completeStorage = data;
+  }
+
+  getRandomNumber() {
+    const sameNum = randomNum => {
+      const length = this.completeStorage.length;
+      // console.log(length);
+      for (let i = 0; i < length; i++) {
+        if (randomNum === this.completeStorage[i].id) {
+          return true;
+        }
+      }
+      return false;
+    };
+    let i = 0;
+    while (i < 1) {
+      const randomNum = Math.floor(Math.random() * 10000000);
+      if (!sameNum(randomNum)) {
+        return randomNum;
+        i++;
+      }
+    }
   }
 }

@@ -10,7 +10,15 @@
 export default class TodoView {
   constructor(
     model,
-    { $toDoList, $doneList, $todoCount, $completeCount, $achievementDiv }
+    {
+      $toDoList,
+      $doneList,
+      $todoCount,
+      $completeCount,
+      $achievementDiv,
+      $searchResult,
+      $searchCount,
+    }
   ) {
     this.model = model;
     this.$toDoList = $toDoList;
@@ -18,6 +26,8 @@ export default class TodoView {
     this.$todoCount = $todoCount;
     this.$completeCount = $completeCount;
     this.$achievementDiv = $achievementDiv;
+    this.$searchResult = $searchResult;
+    this.$searchCount = $searchCount;
   }
 
   renderTodo(li) {
@@ -31,6 +41,22 @@ export default class TodoView {
   renderCounter() {
     this.$todoCount.innerText = this.model.todoStorage.length;
     this.$completeCount.innerText = this.model.completeStorage.length;
+  }
+
+  renderSearchResult(li) {
+    this.$searchResult.prepend(li);
+  }
+
+  renderSearchCounter(num) {
+    this.$searchCount.innerText = num;
+  }
+
+  clearSearchResult() {
+    this.$searchResult.innerHTML = '';
+  }
+
+  renderNoResult(value) {
+    this.$searchResult.innerHTML = `<span class='noResult'>There were no results found for '${value}'.</span>`;
   }
 
   renderAchievement(li) {

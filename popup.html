@@ -6,10 +6,18 @@
     <link rel="stylesheet" href="style.css">
     <title>Heading Mark</title>
 <body style="width: 600px">
+  <div class="search-container">
+    <form id="form">
+        <div class="search-form">              
+          <input type="text" id="search-input" placeholder="Search for keyword in the saved list">
+        <button class="search-btn">Search</button></div>
+    </form>
+    <div id="search-result" class="search-result"></div>
+  </div>
   <div>
-      <button id="order-btn" class="order-btn orange">Move saved list up</button>
+    <button id="order-btn" class="order-btn orange">Move saved list up</button>
     <button id="achievement-btn" class="achievement-btn">View saved list by date</button>
-    </div>
+  </div>
     <div id="achievements" class="achievements">
       <h2>Saved list by date</h2>
       <button id="close-btn" class="close-btn">Close</button>
