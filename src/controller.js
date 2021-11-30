@@ -397,7 +397,7 @@ export default class TodoController {
       const $daySpan = document.createElement('span');
       $daySpan.innerText = date;
       $daySpan.className = 'achievement-day';
-      const $counter = document.createElement('span');
+      const $counter = document.createElement('div');
       $counter.innerText = Object.keys(obj).length;
       $counter.className = 'counter';
       $dayDiv.appendChild($daySpan);
