@@ -6,6 +6,7 @@ export default class TodoController {
     this.model = model;
     this.view = view;
     this.alreadyShow = false;
+    this.searchResultShow = false;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -13,6 +14,7 @@ export default class TodoController {
   init() {
     this.changeDivOrder();
     this.initAchievement();
+    this.initSearchForm();
     document
       .getElementById('form')
       .addEventListener('submit', this.searchFormHandler.bind(this));
@@ -121,21 +123,31 @@ export default class TodoController {
     );
   }
 
+  initSearchForm() {
+    const $closeBtn = document.getElementById('search-close-btn');
+    $closeBtn.addEventListener('click', () => {
+      this.view.hideSearchResult();
+    });
+  }
+
   searchFormHandler(e) {
     e.preventDefault();
     const $input = document.getElementById('search-input');
     const value = $input.value.toLowerCase();
     this.view.clearSearchResult();
+    let isThereResult = false;
     this.model.completeStorage.forEach(v => {
       // console.log(v.text.includes(value));
       const target = v.text.toLowerCase();
-      if (target.indexOf(value) === -1) {
-        // alert(v);
-        this.view.renderNoResult(value);
-      } else {
+      if (target.indexOf(value) !== -1) {
         this.createSearchResultHandler(v);
+        isThereResult = true;
       }
     });
+    if (isThereResult === false) {
+      this.view.renderNoResult(value);
+      this.view.showSearchResult();
+    }
     $input.value = '';
   }
 
@@ -225,6 +237,7 @@ export default class TodoController {
   }
 
   createSearchResultHandler(obj) {
+    this.view.showSearchResult();
     this.view.renderSearchResult(this.createCompleteElement(obj));
     // this.view.renderSearchCount(num);
   }
@@ -339,17 +352,15 @@ export default class TodoController {
   initAchievement() {
     const showAchievementBtn = document.getElementById('achievement-btn');
     const closeBtn = document.getElementById('close-btn');
-    const achievements = document.getElementById('achievements');
     showAchievementBtn.addEventListener('click', () => {
-      achievements.classList.add('show');
+      this.view.showAchievementBox();
       this.createAchievementsByDateHandler.bind(this)();
     });
     closeBtn.addEventListener('click', () => {
-      achievements.classList.remove('show');
+      this.view.hideAchievementBox();
       this.view.clearAchievement();
       this.alreadyShow = false;
     });
-
   }
 
   createAchievementsByDateHandler() {

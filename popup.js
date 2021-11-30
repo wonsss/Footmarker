@@ -8,7 +8,9 @@ const dom = {
   $doneList: document.getElementById('done-list'),
   $todoCount: document.getElementById('todo-count'),
   $completeCount: document.getElementById('complete-count'),
+  $achievementBox: document.getElementById('achievements'),
   $achievementDiv: document.getElementById('achievementDiv'),
+  $searchResultBox: document.getElementById('search-result-box'),
   $searchResult: document.getElementById('search-result'),
   $searchCount: document.getElementById('search-count'),
 };
