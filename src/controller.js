@@ -136,7 +136,6 @@ export default class TodoController {
 
   searchFormHandler(e) {
     e.preventDefault();
-    console.log('hi');
     const $input = document.getElementById('search-input');
     const value = $input.value.toLowerCase();
     this.view.clearSearchResult();
@@ -184,18 +183,32 @@ export default class TodoController {
     $link.href = obj.url;
     $link.setAttribute('target', '_blank');
 
+    // const $completeBtn = document.createElement('button');
+    // $completeBtn.className = 'complete-btn';
+    // $completeBtn.innerText = 'Save';
+    // $completeBtn.addEventListener('click', e =>
+    //   TodoController.prototype.completeBtnHandler.call(this, e)
+    // );
+
     const $completeBtn = document.createElement('button');
     $completeBtn.className = 'complete-btn';
-    $completeBtn.innerText = 'Save';
-    $completeBtn.addEventListener('click', e =>
-      TodoController.prototype.completeBtnHandler.call(this, e)
-    );
+    const storage = this.model.completeStorage;
+    if (this.checkIfSavedUrl(obj.url, storage) === true) {
+      $completeBtn.classList.add('saved');
+      $completeBtn.innerText = 'Saved';
+    } else {
+      $completeBtn.innerText = 'Save';
+      $completeBtn.addEventListener('click', e =>
+        TodoController.prototype.completeBtnHandler.call(this, e)
+      );
+    }
     $link.appendChild($todoSpan);
     $div.appendChild($link);
     $li.appendChild($div);
     $li.appendChild($completeBtn);
     this.view.renderTodo($li);
     this.view.renderCounter();
+
     return $li;
   }
 
@@ -321,6 +334,8 @@ export default class TodoController {
 
   completeBtnHandler(e) {
     e.preventDefault();
+    e.target.classList.add('saved');
+    e.target.innerText = 'Saved';
     const $li = e.target.parentElement;
     const completeObj = this.model.todoStorage.find(
       todo => todo.id === parseInt($li.id, 10)
@@ -328,7 +343,7 @@ export default class TodoController {
     this.model.todoStorage = this.model.todoStorage.filter(
       todo => todo.id !== parseInt($li.id, 10)
     );
-    $li.remove();
+    // $li.remove();
     this.model.saveTodo(TodoModel.TODO_KEY, this.model.todoStorage);
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -439,5 +454,14 @@ export default class TodoController {
         createDateAchievement(collectionByDate[date], date);
       }
     }
+  }
+
+  checkIfSavedUrl(url, storage) {
+    for (let i = 0; i < storage.length; i++) {
+      if (url === storage[i].url) {
+        return true;
+      }
+    }
+    return false;
   }
 }

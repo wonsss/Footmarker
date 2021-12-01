@@ -13,8 +13,8 @@
   --gray: #86868b;
   --midgray: #666668;
   --darkgray: #353535;
-  --red: #FF9B00;
-  --green: #41E638
+  --red: #ff9b00;
+  --green: #41e638;
 }
 
 body {
@@ -79,7 +79,7 @@ h1 {
   width: 90%;
   font-size: 17px;
   word-break: break-all;
-    overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -92,7 +92,7 @@ h1 {
   margin: 5px 3px 2px;
   width: 80%;
   word-break: break-all;
-    overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -120,7 +120,7 @@ button {
   cursor: pointer;
   font-size: 18px;
   font-weight: bold;
-  color: var(--white2);
+  color: var(--white1);
   background-color: var(--blue);
 }
 .add-btn {
@@ -189,9 +189,13 @@ li {
 }
 
 .complete-btn {
-    background-color: var(--green);
-    color: var(--white1)
+  background-color: var(--green);
+  color: var(--white1);
+}
 
+.complete-btn.saved {
+  background-color: var(--red);
+  cursor: default;
 }
 
 .done-div {
@@ -358,7 +362,7 @@ li {
 }
 
 .close-btn {
-    background-color: var(--red);
+  background-color: var(--red);
   padding: 8px;
   margin-top: 15px;
   float: right;
@@ -405,9 +409,9 @@ li {
   left: 50%;
   top: 60px;
   transform: translate(-50%, 0);
-  background: var(--black2);
+  background: var(--gray);
   font-size: 22px;
-  min-height: 540px;
+  min-height: 528px;
   width: 540px;
   padding: 20px;
   border-radius: 7px;
@@ -427,7 +431,7 @@ li {
 }
 
 .search-close-btn {
-    background-color: var(--red);
+  background-color: var(--red);
   height: 30px;
   position: absolute;
   left: 50%;
@@ -472,3 +476,4 @@ html {
 }
 ::-webkit-resizer {
   background-color: var(--midgray);
+}
