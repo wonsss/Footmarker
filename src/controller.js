@@ -43,9 +43,9 @@ export default class TodoController {
           const minute = TodoController.prototype.beautifyTime(
             now.getMinutes()
           );
-          if (!data[0].includes('</a>')) {
-            return false;
-          }
+          // if (!data[0].includes('</a>')) {
+          //   return false;
+          // }
           chrome.tabs.executeScript(
             {
               code: 'document.location.href',
