@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/extensions
+// eslint-disable-next-line class-methods-use-this
 import TodoModel from './model.js';
 
 export default class TodoController {
@@ -8,8 +9,6 @@ export default class TodoController {
     this.alreadyShow = false;
     this.searchResultShow = false;
   }
-
-  // eslint-disable-next-line class-methods-use-this
 
   init() {
     this.changeDivOrder();
@@ -183,13 +182,6 @@ export default class TodoController {
     $link.href = obj.url;
     $link.setAttribute('target', '_blank');
 
-    // const $completeBtn = document.createElement('button');
-    // $completeBtn.className = 'complete-btn';
-    // $completeBtn.innerText = 'Save';
-    // $completeBtn.addEventListener('click', e =>
-    //   TodoController.prototype.completeBtnHandler.call(this, e)
-    // );
-
     const $completeBtn = document.createElement('button');
     $completeBtn.className = 'complete-btn';
     const storage = this.model.completeStorage;
@@ -269,7 +261,6 @@ export default class TodoController {
   createSearchResultHandler(obj) {
     this.view.showSearchResult();
     this.view.renderSearchResult(this.createCompleteElement(obj));
-    // this.view.renderSearchCount(num);
   }
 
   modifyBtnHandler(e) {
@@ -343,7 +334,6 @@ export default class TodoController {
     this.model.todoStorage = this.model.todoStorage.filter(
       todo => todo.id !== parseInt($li.id, 10)
     );
-    // $li.remove();
     this.model.saveTodo(TodoModel.TODO_KEY, this.model.todoStorage);
     const now = new Date();
     const month = now.getMonth() + 1;
