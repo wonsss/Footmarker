@@ -13,7 +13,7 @@ export default class TodoModel {
   }
 
   saveTodo(key, storage) {
-    chrome.storage.sync.set({
+    chrome.storage.local.set({
       [key]: JSON.stringify(storage),
     });
   }

@@ -19,7 +19,7 @@ export default class TodoController {
       this.model.setCompleteStorage(data);
       this.model.completeStorage.forEach(this.createCompleteHandler.bind(this));
     };
-    chrome.storage.sync.get(function (data) {
+    chrome.storage.local.get(function (data) {
       if (data.MarcoCOMPLETE !== null) {
         const parsedData = JSON.parse(data.MarcoCOMPLETE);
         setComplete(parsedData);
