@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/extensions
 // eslint-disable-next-line class-methods-use-this
-import TodoModel from './model.js';
+import TodoModel from "./model.js";
 
 export default class TodoController {
   constructor(model, view) {
@@ -47,16 +47,16 @@ export default class TodoController {
           // }
           chrome.tabs.executeScript(
             {
-              code: 'document.location.href',
+              code: "document.location.href",
             },
             url => {
-              let simpleUrl = '';
+              let simpleUrl = "";
               function isHashThere() {
                 const indexStart = data[0].indexOf('href="#') + 6;
                 const indexEnd = data[0].indexOf('"', indexStart);
                 const hashUrl = data[0].slice(indexStart, indexEnd);
-                if (url[0].includes('#')) {
-                  simpleUrl = url[0].slice(0, url[0].indexOf('#'));
+                if (url[0].includes("#")) {
+                  simpleUrl = url[0].slice(0, url[0].indexOf("#"));
                   simpleUrl += hashUrl;
                 } else {
                   simpleUrl = url[0];
@@ -71,14 +71,14 @@ export default class TodoController {
 
               chrome.tabs.executeScript(
                 {
-                  code: 'document.title',
+                  code: "document.domain",
                 },
                 title => {
                   const newText = data[0]
-                    .replace(/<(\/a|a)([^>]*)>/gi, '')
-                    .replace(/<(\/span|span)([^>]*)>/gi, '')
-                    .replace(/<(\/code|code)([^>]*)>/gi, '')
-                    .replace(/#/gi, '');
+                    .replace(/<(\/a|a)([^>]*)>/gi, "")
+                    .replace(/<(\/span|span)([^>]*)>/gi, "")
+                    .replace(/<(\/code|code)([^>]*)>/gi, "")
+                    .replace(/#/gi, "");
 
                   const newTodoObj = {
                     text: newText,
@@ -91,10 +91,10 @@ export default class TodoController {
                     newTodoObj,
                     this.model.todoStorage
                   );
-                  this.model.saveTodo('MarcoTODO', this.model.todoStorage);
+                  this.model.saveTodo("MarcoTODO", this.model.todoStorage);
                   this.createTodoHandler(newTodoObj);
                   this.view.renderCounter();
-                  document.addEventListener('click', function (e) {
+                  document.addEventListener("click", function (e) {
                     if (e.target.href !== undefined) {
                       chrome.tabs.create({ url: e.target.href });
                     }
@@ -121,26 +121,26 @@ export default class TodoController {
 
   initSearchForm() {
     document
-      .getElementById('form')
-      .addEventListener('submit', this.searchFormHandler.bind(this));
+      .getElementById("form")
+      .addEventListener("submit", this.searchFormHandler.bind(this));
     document
-      .getElementById('search-input')
-      .addEventListener('keyup', this.searchFormHandler.bind(this));
+      .getElementById("search-input")
+      .addEventListener("keyup", this.searchFormHandler.bind(this));
     document
-      .getElementById('search-close-btn')
-      .addEventListener('click', () => {
+      .getElementById("search-close-btn")
+      .addEventListener("click", () => {
         this.view.hideSearchResult();
       });
   }
 
   searchFormHandler(e) {
     e.preventDefault();
-    const $input = document.getElementById('search-input');
+    const $input = document.getElementById("search-input");
     const value = $input.value.toLowerCase();
     this.view.clearSearchResult();
     let isThereResult = false;
-    if (value === '') {
-      const text = 'Please enter a search term.';
+    if (value === "") {
+      const text = "Please enter a search term.";
       this.view.renderNoResult(text);
       this.view.showSearchResult();
       return;
@@ -168,29 +168,29 @@ export default class TodoController {
   }
 
   createTodoHandler(obj) {
-    const $li = document.createElement('li');
-    $li.className = 'todo-line';
+    const $li = document.createElement("li");
+    $li.className = "todo-line";
     $li.id = obj.id;
 
-    const $div = document.createElement('div');
-    $div.className = 'todo-span';
-    const $todoSpan = document.createElement('span');
-    $todoSpan.className = 'todo-span';
+    const $div = document.createElement("div");
+    $div.className = "todo-span";
+    const $todoSpan = document.createElement("span");
+    $todoSpan.className = "todo-span";
     $todoSpan.innerHTML = obj.text;
 
-    const $link = document.createElement('a');
+    const $link = document.createElement("a");
     $link.href = obj.url;
-    $link.setAttribute('target', '_blank');
+    $link.setAttribute("target", "_blank");
 
-    const $completeBtn = document.createElement('button');
-    $completeBtn.className = 'complete-btn';
+    const $completeBtn = document.createElement("button");
+    $completeBtn.className = "complete-btn";
     const storage = this.model.completeStorage;
     if (this.checkIfSavedUrl(obj.url, storage) === true) {
-      $completeBtn.classList.add('saved');
-      $completeBtn.innerText = 'Saved';
+      $completeBtn.classList.add("saved");
+      $completeBtn.innerText = "Saved";
     } else {
-      $completeBtn.innerText = 'Save';
-      $completeBtn.addEventListener('click', e =>
+      $completeBtn.innerText = "Save";
+      $completeBtn.addEventListener("click", e =>
         TodoController.prototype.completeBtnHandler.call(this, e)
       );
     }
@@ -205,39 +205,39 @@ export default class TodoController {
   }
 
   createCompleteElement(obj) {
-    const $li = document.createElement('li');
-    $li.className = 'done-line';
+    const $li = document.createElement("li");
+    $li.className = "done-line";
     $li.id = obj.id;
-    const $addDaySpan = document.createElement('span');
-    $addDaySpan.className = 'add-day-done';
+    const $addDaySpan = document.createElement("span");
+    $addDaySpan.className = "add-day-done";
     $addDaySpan.innerText = obj.addDay;
 
-    const $link = document.createElement('a');
+    const $link = document.createElement("a");
     $link.href = obj.url;
-    $link.setAttribute('target', '_blank');
+    $link.setAttribute("target", "_blank");
 
-    const $title = document.createElement('span');
-    $title.className = 'title-span';
+    const $title = document.createElement("span");
+    $title.className = "title-span";
     $title.innerText = obj.title;
 
-    const $div = document.createElement('div');
-    $div.className = 'divBox';
+    const $div = document.createElement("div");
+    $div.className = "divBox";
 
-    const $doneSpan = document.createElement('div');
-    $doneSpan.className = 'done-span';
+    const $doneSpan = document.createElement("div");
+    $doneSpan.className = "done-span";
     $doneSpan.innerHTML = obj.text;
 
-    const $modifyBtn = document.createElement('button');
-    $modifyBtn.className = 'modify-btn';
-    $modifyBtn.innerText = 'Edit';
-    $modifyBtn.addEventListener('click', e =>
+    const $modifyBtn = document.createElement("button");
+    $modifyBtn.className = "modify-btn";
+    $modifyBtn.innerText = "Edit";
+    $modifyBtn.addEventListener("click", e =>
       TodoController.prototype.modifyBtnHandler.call(this, e)
     );
 
-    const $deleteBtn = document.createElement('button');
-    $deleteBtn.className = 'delete-btn';
-    $deleteBtn.innerText = 'Delete';
-    $deleteBtn.addEventListener('click', e =>
+    const $deleteBtn = document.createElement("button");
+    $deleteBtn.className = "delete-btn";
+    $deleteBtn.innerText = "Delete";
+    $deleteBtn.addEventListener("click", e =>
       TodoController.prototype.deleteBtnHandler.call(this, e)
     );
 
@@ -267,11 +267,11 @@ export default class TodoController {
     e.preventDefault();
     const $li = e.target.parentElement;
     const theId = $li.id;
-    const $modifyForm = document.createElement('form');
-    $modifyForm.className = 'modify-form';
+    const $modifyForm = document.createElement("form");
+    $modifyForm.className = "modify-form";
 
-    const $modifyInput = document.createElement('input');
-    $modifyInput.className = 'modify-input';
+    const $modifyInput = document.createElement("input");
+    $modifyInput.className = "modify-input";
     const modifyObj = this.model.completeStorage.find(
       todo => todo.id === parseInt(theId, 10)
     );
@@ -298,9 +298,9 @@ export default class TodoController {
       modifySubmitHandler();
     };
 
-    const $modifyBtn = document.createElement('button');
-    $modifyBtn.className = 'modified-btn';
-    $modifyBtn.innerText = 'Edit done';
+    const $modifyBtn = document.createElement("button");
+    $modifyBtn.className = "modified-btn";
+    $modifyBtn.innerText = "Edit done";
 
     $modifyForm.appendChild($modifyInput);
     $modifyForm.appendChild($modifyBtn);
@@ -325,8 +325,8 @@ export default class TodoController {
 
   completeBtnHandler(e) {
     e.preventDefault();
-    e.target.classList.add('saved');
-    e.target.innerText = 'Saved';
+    e.target.classList.add("saved");
+    e.target.innerText = "Saved";
     const $li = e.target.parentElement;
     const completeObj = this.model.todoStorage.find(
       todo => todo.id === parseInt($li.id, 10)
@@ -347,38 +347,38 @@ export default class TodoController {
 
   changeDivOrder(e) {
     function orderToggle() {
-      let buttonValue = document.getElementById('order-btn').innerText;
-      if (buttonValue === 'Move saved list up') {
-        document.getElementById('order-btn').innerText =
-          'Move scrap targets up';
+      let buttonValue = document.getElementById("order-btn").innerText;
+      if (buttonValue === "Move saved list up") {
+        document.getElementById("order-btn").innerText =
+          "Move scrap targets up";
         document
-          .getElementById('order-btn')
-          .classList.replace('orange', 'blue');
-        let content = document.getElementById('Bcontainer');
+          .getElementById("order-btn")
+          .classList.replace("orange", "blue");
+        let content = document.getElementById("Bcontainer");
         let parent = content.parentNode;
         parent.insertBefore(content, parent.firstChild);
-      } else if (buttonValue === 'Move scrap targets up') {
-        document.getElementById('order-btn').innerText = 'Move saved list up';
+      } else if (buttonValue === "Move scrap targets up") {
+        document.getElementById("order-btn").innerText = "Move saved list up";
         document
-          .getElementById('order-btn')
-          .classList.replace('blue', 'orange');
-        let content = document.getElementById('Acontainer');
+          .getElementById("order-btn")
+          .classList.replace("blue", "orange");
+        let content = document.getElementById("Acontainer");
         let parent = content.parentNode;
         parent.insertBefore(content, parent.firstChild);
       }
     }
-    const orderBtn = document.getElementById('order-btn');
-    orderBtn.addEventListener('click', orderToggle);
+    const orderBtn = document.getElementById("order-btn");
+    orderBtn.addEventListener("click", orderToggle);
   }
 
   initAchievement() {
-    const showAchievementBtn = document.getElementById('achievement-btn');
-    const closeBtn = document.getElementById('close-btn');
-    showAchievementBtn.addEventListener('click', () => {
+    const showAchievementBtn = document.getElementById("achievement-btn");
+    const closeBtn = document.getElementById("close-btn");
+    showAchievementBtn.addEventListener("click", () => {
       this.view.showAchievementBox();
       this.createAchievementsByDateHandler.bind(this)();
     });
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener("click", () => {
       this.view.hideAchievementBox();
       this.view.clearAchievement();
       this.alreadyShow = false;
@@ -402,40 +402,62 @@ export default class TodoController {
       const targetDate = obj.addDay.slice(0, 5);
       collectionByDate[targetDate].push(obj);
     });
-    const createDateAchievement = (obj, date) => {
-      const $li = document.createElement('div');
-      $li.className = 'achievement-Card';
-      const $dayDiv = document.createElement('div');
-      $dayDiv.className = 'day-div';
-      const $daySpan = document.createElement('span');
-      $daySpan.innerText = date;
-      $daySpan.className = 'achievement-day';
-      const $counter = document.createElement('div');
-      $counter.innerText = Object.keys(obj).length;
-      $counter.className = 'counter';
-      $dayDiv.appendChild($daySpan);
 
-      $dayDiv.appendChild($counter);
-      $li.appendChild($dayDiv);
+    const createDateAchievement = (obj, date) => {
+      const $li = document.createElement("div");
+      $li.className = "achievement-Card";
+      const $counter = document.createElement("div");
+      $counter.innerText = Object.keys(obj).length;
+      $counter.className = "counter";
+      $li.appendChild($counter);
+
+      const $tooltip = document.createElement("div");
+      $tooltip.className = "tooltip";
+
+      const $copyButton = document.createElement("button");
+      $copyButton.innerText = "Copy";
+      $copyButton.className = "copy-button";
+      $copyButton.addEventListener("click", this.copyClipboard);
+
+      const $tooltipText = document.createElement("span");
+      $tooltipText.className = "tooltiptext";
+      $tooltipText.id = "myTooltip";
+      $tooltipText.innerText = "Copy to clipboard";
+      $copyButton.appendChild($tooltipText);
+      $tooltip.appendChild($copyButton);
+
+      $li.appendChild($tooltip);
+
+      const $copyArea = document.createElement("section");
+
+      const $dayDiv = document.createElement("div");
+      $dayDiv.className = "day-div";
+      const $daySpan = document.createElement("h3");
+      $daySpan.innerText = date;
+      $daySpan.className = "achievement-day";
+      $dayDiv.appendChild($daySpan);
+      $copyArea.appendChild($dayDiv);
 
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          const $doneSpan = document.createElement('div');
+          const $doneSpan = document.createElement("div");
           $doneSpan.innerHTML = obj[key].text;
-          $doneSpan.className = 'achievement-span';
+          $doneSpan.className = "achievement-span";
 
-          const $link = document.createElement('a');
+          const $link = document.createElement("a");
           $link.href = obj[key].url;
-          $link.setAttribute('target', '_blank');
-          const $title = document.createElement('span');
-          $title.className = 'title-span';
-          $title.innerText = obj[key].title;
+          $link.setAttribute("target", "_blank");
 
-          $li.appendChild($title);
+          // const $title = document.createElement("span");
+          // $title.className = "title-span";
+          // $title.innerText = obj[key].title;
+
+          // $copyArea.appendChild($title);
           $link.appendChild($doneSpan);
-          $li.appendChild($link);
+          $copyArea.appendChild($link);
         }
       }
+      $li.appendChild($copyArea);
       this.view.renderAchievement($li);
     };
 
@@ -453,5 +475,13 @@ export default class TodoController {
       }
     }
     return false;
+  }
+
+  copyClipboard(element) {
+    console.log(element.path);
+    const copiedHtml = element.path[3].querySelector("section").cloneNode(true);
+
+    navigator.clipboard.writeText(copiedHtml.innerHTML);
+    element.path[1].querySelector(".tooltiptext").innerText = "copied";
   }
 }

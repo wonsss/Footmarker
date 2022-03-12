@@ -47,7 +47,7 @@ export default class TodoView {
   }
 
   clearSearchResult() {
-    this.$searchResult.innerHTML = '';
+    this.$searchResult.innerHTML = "";
   }
 
   renderNoResult(text) {
@@ -55,26 +55,26 @@ export default class TodoView {
   }
 
   showSearchResult() {
-    this.$searchResultBox.classList.add('show');
+    this.$searchResultBox.classList.add("show");
   }
 
   hideSearchResult() {
-    this.$searchResultBox.classList.remove('show');
+    this.$searchResultBox.classList.remove("show");
   }
 
   showAchievementBox() {
-    this.$achievementBox.classList.add('show');
+    this.$achievementBox.classList.add("show");
   }
 
   hideAchievementBox() {
-    this.$achievementBox.classList.remove('show');
+    this.$achievementBox.classList.remove("show");
   }
 
   renderAchievement(li) {
-    this.$achievementDiv.append(li);
+    this.$achievementDiv.prepend(li);
   }
 
   clearAchievement() {
-    this.$achievementDiv.innerHTML = '';
+    this.$achievementDiv.innerHTML = "";
   }
 }

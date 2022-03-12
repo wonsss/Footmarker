@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 :root {
@@ -331,20 +331,68 @@ li {
   border-radius: 5px;
   margin: 30px;
 }
-.counter {
-  background-color: var(--gray);
-  font-size: 15px;
+.copy-button {
+  /* margin: 0 15px; */
+  /* float: right; */
+  height: 30px;
+  width: 55px;
+}
+
+.tooltip {
   position: relative;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  left: 200px;
+  margin: 0 15px;
+  display: inline-block;
+  float: right;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: -150%;
+  left: 50%;
+  margin-left: -110px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -34%;
+  left: 50%;
+  border-width: 5px;
+  margin-left: 35px;
+
+  border-style: solid;
+  border-color: transparent transparent #555 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.counter {
+  margin: 0 15px;
+  background-color: var(--gray);
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   text-align: center;
   line-height: 15px;
-  border-radius: 50%;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   font-weight: bold;
+  float: left;
 }
 .achievement-Card {
   background-color: var(--black0);
